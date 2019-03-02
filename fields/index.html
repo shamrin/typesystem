@@ -789,6 +789,9 @@ Represented in HTML forms as a <code>&lt;textarea&gt;</code>.</p>
 <h3 id="boolean">Boolean</h3>
 <p>Represented in HTML forms as a <code>&lt;checkbox&gt;</code>.</p>
 <p>For example: <code>is_admin = typesystem.Boolean(default=False)</code></p>
+<p>Because all fields are required unless a <code>default</code> is given, you'll typically
+want to use <code>default=False</code>. This is particularly true if you want to render
+boolean fields as HTML checkboxes, since they do not submit any input if unchecked.</p>
 <h2 id="numeric-data-types">Numeric data types</h2>
 <h3 id="number">Number</h3>
 <p>A base class for <code>Integer</code>, <code>Float</code>, and <code>Decimal</code>. If used directly, <code>Number</code>
@@ -800,7 +803,7 @@ will validate <em>either</em> int or float instances.</p>
 <li><code>exclusive_minimum</code> - A number representing an exclusive minimum. Inputs must be greater than this to validate. <strong>Default: <code>None</code></strong></li>
 <li><code>exclusive_maximum</code> - A number representing an exclusive maximum. Inputs must be less than this to validate. <strong>Default: <code>None</code></strong></li>
 <li><code>precision</code> - A string representing the decimal precision to truncate input with. Eg. <code>precision="0.001"</code>. <strong>Default: <code>None</code></strong></li>
-<li><code>multiple_of</code> - A number giving a value that inputs must be a strict multiple of in order to validate. Eg. <code>multiple_of=2</code> will only validate even integers.</li>
+<li><code>multiple_of</code> - A number giving a value that inputs must be a strict multiple of in order to validate. Eg. <code>multiple_of=2</code> will only validate even integers. <strong>Default: <code>None</code></strong></li>
 </ul>
 <h3 id="integer">Integer</h3>
 <p>Takes the same arguments as <code>Number</code>. Returns instances of <code>int</code>.</p>
