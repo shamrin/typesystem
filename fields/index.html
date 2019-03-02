@@ -766,7 +766,7 @@ class. This is useful if you have a general datastructure that requires validati
 <li><code>max_length</code> - A maximum number of characters that valid input stings may contain. <strong>Default: <code>None</code></strong></li>
 <li><code>min_length</code> - A minimum number of characters that valid input stings may contain. <strong>Default: <code>None</code></strong></li>
 <li><code>pattern</code> - A string to be used as a regex that must match. Eg. <code>patern="^[A-Za-z]+$"</code> <strong>Default: <code>None</code></strong></li>
-<li><code>format</code> - <strong>TODO</strong></li>
+<li><code>format</code> - A string used to indicate a semantic type, such as <code>"email"</code>, <code>"url"</code>, or <code>"color"</code>. <strong>Default: <code>None</code></strong></li>
 </ul>
 <h3 id="text">Text</h3>
 <p>Validates multi-line strings. Takes the same arguments as <code>String</code>.
@@ -859,6 +859,12 @@ complex data structure that you need to validate.</p>
 </ul>
 <h3 id="nested">Nested</h3>
 <p>Used to validate a nested schema.</p>
+<p>For example:</p>
+<div class="codehilite"><pre><span></span><span class="n">owner</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Nested</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">User</span><span class="p">,</span> <span class="n">allow_null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong>:</p>
 <ul>
 <li><code>schema</code> - A schema class. <strong>Required</strong></li>
 </ul>
