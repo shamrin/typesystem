@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
     
     
       
@@ -95,6 +95,10 @@
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#including-values-and-errors" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
     
     
       <header class="md-header" data-md-component="header">
@@ -269,9 +273,50 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Forms
+      </label>
+    
     <a href="./" title="Forms" class="md-nav__link md-nav__link--active">
       Forms
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#including-values-and-errors" title="Including values and errors" class="md-nav__link">
+    Including values and errors
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-field-rendering" title="Customizing field rendering" class="md-nav__link">
+    Customizing field rendering
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-a-packaged-theme" title="Using a packaged theme" class="md-nav__link">
+    Using a packaged theme
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -295,6 +340,49 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#including-values-and-errors" title="Including values and errors" class="md-nav__link">
+    Including values and errors
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-field-rendering" title="Customizing field rendering" class="md-nav__link">
+    Customizing field rendering
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-a-packaged-theme" title="Using a packaged theme" class="md-nav__link">
+    Using a packaged theme
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -303,7 +391,142 @@
                 
                   <h1>Forms</h1>
                 
-                <p><strong>TODO</strong></p>
+                <p>TypeSystem gives you form rendering support, which you can either style and
+customize yourself, or use together with a pre-packaged theme.</p>
+<p>Let's take a look:</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">typesystem</span>
+
+<span class="n">forms</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Jinja2Forms</span><span class="p">(</span><span class="n">package</span><span class="o">=</span><span class="s2">&quot;typesystem&quot;</span><span class="p">)</span>  <span class="c1"># Use the default templates.</span>
+
+<span class="k">class</span> <span class="nc">BookingSchema</span><span class="p">(</span><span class="n">typesystem</span><span class="o">.</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Start date&quot;</span><span class="p">)</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;End date&quot;</span><span class="p">)</span>
+    <span class="n">room</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Room type&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="s1">&#39;Double room&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;twin&#39;</span><span class="p">,</span> <span class="s1">&#39;Twin room&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="s1">&#39;Single room&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+    <span class="n">include_breakfast</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Include breakfast&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="n">form</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">(</span><span class="n">BookingSchema</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+</pre></div>
+
+
+<p>That'll render an HTML form which looks something like this:</p>
+<p><img alt="Default form rendering" src="../img/form_default_rendering.png" /></p>
+<p>The default templates included by <code>typesystem</code> use tables to provide a simple
+functional layout.</p>
+<p>Notice that only the fields in the form are rendered. The surrounding <code>&lt;form&gt;</code>, <code>&lt;table&gt;</code>, and <code>&lt;input type="submit"&gt;</code> tags should be included directly in any template that renders the form.</p>
+<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;form-bookingschema-start-date&quot;</span><span class="p">&gt;</span>Start date<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;date&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;form-bookingschema-start-date&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;start_date&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;form-bookingschema-end-date&quot;</span><span class="p">&gt;</span>End date<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;date&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;form-bookingschema-end-date&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;end_date&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;form-bookingschema-room&quot;</span><span class="p">&gt;</span>Room type<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;form-bookingschema-room&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;room&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span><span class="p">&gt;&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;double&quot;</span><span class="p">&gt;</span>Double room<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;twin&quot;</span><span class="p">&gt;</span>Twin room<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;single&quot;</span><span class="p">&gt;</span>Single room<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;form-bookingschema-include-breakfast&quot;</span><span class="p">&gt;</span>Include breakfast<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;form-bookingschema-include-breakfast&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;include_breakfast&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>You can include a form inside a Jinja2 template by passing it as context,
+and rendering the context value. Make sure to include the surrounding tags:</p>
+<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+        {{ form }}
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Make booking&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<h2 id="including-values-and-errors">Including values and errors</h2>
+<p>We can include values in a form like so:</p>
+<div class="codehilite"><pre><span></span><span class="n">initial_values</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;room&#39;</span><span class="p">:</span> <span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="s1">&#39;include_breakfast&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+<span class="n">form</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">(</span><span class="n">BookingSchema</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">initial_values</span><span class="p">)</span>
+</pre></div>
+
+
+<p>We can also include validation errors:</p>
+<div class="codehilite"><pre><span></span><span class="n">booking</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">BookingSchema</span><span class="o">.</span><span class="n">validate_or_error</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">(</span><span class="n">BookingSchema</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="customizing-field-rendering">Customizing field rendering</h2>
+<p>If you'd like to override the default field rendering you can switch to
+using your own custom templates. Switch this line:</p>
+<div class="codehilite"><pre><span></span><span class="n">forms</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Jinja2Forms</span><span class="p">(</span><span class="n">package</span><span class="o">=</span><span class="s2">&quot;typesystem&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To instead use a <code>templates</code> directories:</p>
+<div class="codehilite"><pre><span></span><span class="n">forms</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Jinja2Forms</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s2">&quot;templates&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>You'll need to provide the following templates:</p>
+<ul>
+<li><code>forms/checkbox.html</code></li>
+<li><code>forms/input.html</code></li>
+<li><code>forms/select.html</code></li>
+<li><code>forms/textarea.html</code></li>
+</ul>
+<h2 id="using-a-packaged-theme">Using a packaged theme</h2>
+<p>You can also use a pre-packaged theme, such as Bootstrap 4:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># This pypi package includes `typesystem` form templates,</span>
+<span class="c1"># and pre-packaged static files.</span>
+$ pip install bootstrap4
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="n">forms</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Jinja2Forms</span><span class="p">(</span><span class="n">package</span><span class="o">=</span><span class="s2">&quot;bootstrap4&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The <code>bootstrap4</code> package also provides the static CSS and JavaScript files,
+which you can easily serve up from Starlette's <code>StaticFiles</code> application:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Serve everything in the local &quot;statics&quot; directory plus everything</span>
+<span class="c1"># in the &quot;statics&quot; directory of the `bootstrap4` package.</span>
+<span class="n">statics</span> <span class="o">=</span> <span class="n">StaticFiles</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s2">&quot;statics&quot;</span><span class="p">,</span> <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bootstrap4&quot;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>That will then render HTML forms using Bootstrap:</p>
+<p><img alt="Bootstrap form rendering" src="../img/form_boostrap_rendering.png" /></p>
                 
                   
                 
@@ -373,7 +596,7 @@
       
     </div>
     
-      <script src="../assets/javascripts/application.d9aa80ab.js"></script>
+      <script src="../assets/javascripts/application.b806dc00.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       

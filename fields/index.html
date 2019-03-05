@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
     
     
       
@@ -784,8 +784,9 @@ want to use <code>default=False</code>. This is particularly true if you want to
 boolean fields as HTML checkboxes, since they do not submit any input if unchecked.</p>
 <h2 id="numeric-data-types">Numeric data types</h2>
 <h3 id="number">Number</h3>
-<p>A base class for <code>Integer</code>, <code>Float</code>, and <code>Decimal</code>. If used directly, <code>Number</code>
-will validate <em>either</em> int or float instances.</p>
+<p>The base class for <code>Integer</code>, <code>Float</code>, and <code>Decimal</code>.</p>
+<p>You won't typically want to use this class directly, since the subclasses
+provide more precise behaviour.</p>
 <p><strong>Arguments</strong>:</p>
 <ul>
 <li><code>minimum</code> - A number representing the minimum allowed value. Inputs must be greater than or equal to this to validate. <strong>Default: <code>None</code></strong></li>
@@ -937,7 +938,7 @@ complex data structure that you need to validate.</p>
       
     </div>
     
-      <script src="../assets/javascripts/application.d9aa80ab.js"></script>
+      <script src="../assets/javascripts/application.b806dc00.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
