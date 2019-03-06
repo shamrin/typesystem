@@ -38,7 +38,7 @@
     
     
       
-        <title>Tokenize Errors - TypeSystem</title>
+        <title>Tokenized Errors - TypeSystem</title>
       
     
     
@@ -117,7 +117,7 @@
               TypeSystem
             </span>
             <span class="md-header-nav__topic">
-              Tokenize Errors
+              Tokenized Errors
             </span>
           
         </div>
@@ -281,8 +281,8 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
-    <a href="./" title="Tokenize Errors" class="md-nav__link md-nav__link--active">
-      Tokenize Errors
+    <a href="./" title="Tokenized Errors" class="md-nav__link md-nav__link--active">
+      Tokenized Errors
     </a>
     
   </li>
@@ -313,7 +313,7 @@
               
                 
                 
-                  <h1>Tokenize Errors</h1>
+                  <h1>Tokenized Errors</h1>
                 
                 <p>For JSON and YAML content, TypeSystem can provide error messages with position
 indicators showing exactly where the error occurred in the raw textual content.</p>
@@ -345,6 +345,8 @@ indicators showing exactly where the error occurred in the raw textual content.<
 <li><code>validate_yaml(text_or_bytes, validator)</code></li>
 </ul>
 <p>In both cases <code>validator</code> may either be a <code>Schema</code> class, or a <code>Field</code> instance.</p>
+<p>Both functions return a two-tuple of <code>(value, messages)</code>. If the <code>messages</code> list
+is non-empty, then <code>value</code> will be <code>None</code>.</p>
                 
                   
                 
