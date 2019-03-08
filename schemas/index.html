@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
     
     
       
@@ -320,6 +320,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../json_schema/" title="JSON Schema" class="md-nav__link">
+      JSON Schema
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../tokenized_errors/" title="Tokenized Errors" class="md-nav__link">
       Tokenized Errors
     </a>
@@ -481,7 +493,7 @@ you can access each individual message with <code>error.messages()</code>:</p>
 
 
 <p>Index lookup on schema instances returns serialized datatypes.</p>
-<div class="codehilite"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">album</span><span class="o">.</span><span class="n">release_date</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">album</span><span class="p">[</span><span class="s1">&#39;release_date&#39;</span><span class="p">]))</span>
 <span class="c1"># &lt;class &#39;str&#39;&gt;</span>
 </pre></div>
 
@@ -588,7 +600,7 @@ when loading existing instances from a database.</p>
       
     </div>
     
-      <script src="../assets/javascripts/application.d9aa80ab.js"></script>
+      <script src="../assets/javascripts/application.b806dc00.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
