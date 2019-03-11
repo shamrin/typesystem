@@ -308,6 +308,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../references/" title="References" class="md-nav__link">
+      References
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../forms/" title="Forms" class="md-nav__link">
       Forms
     </a>
@@ -410,7 +422,7 @@
 <span class="k">class</span> <span class="nc">Album</span><span class="p">(</span><span class="n">typesystem</span><span class="o">.</span><span class="n">Schema</span><span class="p">):</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">release_date</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Date</span><span class="p">()</span>
-    <span class="n">artist</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Nested</span><span class="p">(</span><span class="n">Artist</span><span class="p">)</span>
+    <span class="n">artist</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">Artist</span><span class="p">)</span>
 </pre></div>
 
 

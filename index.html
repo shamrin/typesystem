@@ -278,6 +278,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#alternatives" title="Alternatives" class="md-nav__link">
+    Alternatives
+  </a>
+  
+</li>
+      
       
       
       
@@ -309,6 +316,18 @@
   <li class="md-nav__item">
     <a href="fields/" title="Fields" class="md-nav__link">
       Fields
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="references/" title="References" class="md-nav__link">
+      References
     </a>
   </li>
 
@@ -402,6 +421,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#alternatives" title="Alternatives" class="md-nav__link">
+    Alternatives
+  </a>
+  
+</li>
+      
       
       
       
@@ -464,7 +490,7 @@
 <span class="k">class</span> <span class="nc">Album</span><span class="p">(</span><span class="n">typesystem</span><span class="o">.</span><span class="n">Schema</span><span class="p">):</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">release_date</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Date</span><span class="p">()</span>
-    <span class="n">artist</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Nested</span><span class="p">(</span><span class="n">Artist</span><span class="p">)</span>
+    <span class="n">artist</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">Artist</span><span class="p">)</span>
 
 <span class="n">album</span> <span class="o">=</span> <span class="n">Album</span><span class="o">.</span><span class="n">validate</span><span class="p">({</span>
     <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Double Negative&quot;</span><span class="p">,</span>
@@ -486,6 +512,18 @@
 </pre></div>
 
 
+<h2 id="alternatives">Alternatives</h2>
+<p>There are plenty of other great validation libraries for Python out there,
+including <a href="https://github.com/marshmallow-code/marshmallow">Marshmallow</a>,
+<a href="https://github.com/schematics/schematics">Schematics</a>,
+<a href="https://github.com/alecthomas/voluptuous">Voluptuous</a>, and many others.</p>
+<p>TypeSystem exists because I want a data validation library that offers
+first-class support for:</p>
+<ul>
+<li>Rendering validation classes into HTML forms.</li>
+<li>Marshaling to/from JSON Schema.</li>
+<li>Obtaining positional errors within JSON or YAML documents.</li>
+</ul>
 <p align="center">&mdash; ⭐️ &mdash;</p>
 
 <p align="center"><i>TypeSystem is <a href="https://github.com/encode/typesystem/blob/master/LICENSE.md">BSD licensed</a> code. Designed & built in Brighton, England.</i></p>

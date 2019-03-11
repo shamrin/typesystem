@@ -449,8 +449,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#nested" title="Nested" class="md-nav__link">
-    Nested
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
   </a>
   
 </li>
@@ -468,6 +468,18 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../references/" title="References" class="md-nav__link">
+      References
+    </a>
   </li>
 
     
@@ -709,8 +721,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#nested" title="Nested" class="md-nav__link">
-    Nested
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
   </a>
   
 </li>
@@ -743,7 +755,7 @@
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Organisation</span><span class="p">(</span><span class="n">typesystem</span><span class="o">.</span><span class="n">Schema</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">date_created</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Date created&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">)</span>
-    <span class="n">owner</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Nested</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Owner&quot;</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">User</span><span class="p">,</span> <span class="n">allow_null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">owner</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="n">User</span><span class="p">,</span> <span class="n">allow_null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 
 
@@ -789,7 +801,7 @@ class. This is useful if you have a general datastructure that requires validati
 <li><code>trim_whitespace</code> - A boolean indicating if leading/trailing whitespace should be removed on validation. <strong>Default: <code>True</code></strong></li>
 <li><code>max_length</code> - A maximum number of characters that valid input stings may contain. <strong>Default: <code>None</code></strong></li>
 <li><code>min_length</code> - A minimum number of characters that valid input stings may contain. <strong>Default: <code>None</code></strong></li>
-<li><code>pattern</code> - A string to be used as a regex that must match. Eg. <code>patern="^[A-Za-z]+$"</code> <strong>Default: <code>None</code></strong></li>
+<li><code>pattern</code> - A regular expression that must match. This can be either a string or a compiled regular expression. E.g. <code>pattern="^[A-Za-z]+$"</code> <strong>Default: <code>None</code></strong></li>
 <li><code>format</code> - A string used to indicate a semantic type, such as <code>"email"</code>, <code>"url"</code>, or <code>"color"</code>. <strong>Default: <code>None</code></strong></li>
 </ul>
 <h3 id="text">Text</h3>
@@ -817,8 +829,8 @@ provide more precise behaviour.</p>
 <li><code>maximum</code> - A number representing the maximum allowed value. Inputs must be less than or equal to this to validate. <strong>Default: <code>None</code></strong></li>
 <li><code>exclusive_minimum</code> - A number representing an exclusive minimum. Inputs must be greater than this to validate. <strong>Default: <code>None</code></strong></li>
 <li><code>exclusive_maximum</code> - A number representing an exclusive maximum. Inputs must be less than this to validate. <strong>Default: <code>None</code></strong></li>
-<li><code>precision</code> - A string representing the decimal precision to truncate input with. Eg. <code>precision="0.001"</code>. <strong>Default: <code>None</code></strong></li>
-<li><code>multiple_of</code> - A number giving a value that inputs must be a strict multiple of in order to validate. Eg. <code>multiple_of=2</code> will only validate even integers. <strong>Default: <code>None</code></strong></li>
+<li><code>precision</code> - A string representing the decimal precision to truncate input with. E.g. <code>precision="0.001"</code>. <strong>Default: <code>None</code></strong></li>
+<li><code>multiple_of</code> - A number giving a value that inputs must be a strict multiple of in order to validate. E.g. <code>multiple_of=2</code> will only validate even integers. <strong>Default: <code>None</code></strong></li>
 </ul>
 <h3 id="integer">Integer</h3>
 <p>Takes the same arguments as <code>Number</code>. Returns instances of <code>int</code>.</p>
@@ -870,7 +882,7 @@ provide more precise behaviour.</p>
 
 <p>Schema classes implement their validation behaviour by generating an <code>Object</code>
 field, and automatically determining the <code>properties</code> and <code>required</code> attributes.</p>
-<p>You'll typically want to use <code>typesystem.Nested(schema=SomeSchema)</code> rather than
+<p>You'll typically want to use <code>typesystem.Reference(to=SomeSchema)</code> rather than
 using the <code>Object</code> field directly, but it can be useful if you have a more
 complex data structure that you need to validate.</p>
 <p><strong>Arguments</strong>:</p>
@@ -882,16 +894,16 @@ complex data structure that you need to validate.</p>
 <li><code>max_properties</code> - An integer representing the maximum number of properties that may be included.</li>
 <li><code>required</code> - A list of strings indicating any fields that are strictly required in the input.</li>
 </ul>
-<h3 id="nested">Nested</h3>
-<p>Used to validate a nested schema.</p>
+<h3 id="reference">Reference</h3>
+<p>Used to reference a nested schema.</p>
 <p>For example:</p>
-<div class="codehilite"><pre><span></span><span class="n">owner</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Nested</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">User</span><span class="p">,</span> <span class="n">allow_null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">owner</span> <span class="o">=</span> <span class="n">typesystem</span><span class="o">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="n">User</span><span class="p">,</span> <span class="n">allow_null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 
 
 <p><strong>Arguments</strong>:</p>
 <ul>
-<li><code>schema</code> - A schema class. <strong>Required</strong></li>
+<li><code>to</code> - A schema class or field instance. <strong>Required</strong></li>
 </ul>
                 
                   
@@ -928,13 +940,13 @@ complex data structure that you need to validate.</p>
           </a>
         
         
-          <a href="../forms/" title="Forms" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../references/" title="References" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Forms
+                References
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

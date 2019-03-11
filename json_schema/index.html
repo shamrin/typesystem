@@ -263,6 +263,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../references/" title="References" class="md-nav__link">
+      References
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../forms/" title="Forms" class="md-nav__link">
       Forms
     </a>
@@ -328,11 +340,13 @@
                   <h1>JSON Schema</h1>
                 
                 <p>TypeSystem can convert Schema classes or Field instances to/from JSON Schema.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TypeSystem does not yet have support for marshaling <code>Nested</code> fields
-to/from <code>$ref</code> pointers.</p>
-<p>Support for this feature is planned soon.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>TypeSystem only supports <code>$ref</code> pointers that use the standard "definitions"
+namespace to store referenced schemas.</p>
+<p>All references should be of the style <code>{"$ref": "#/definitions/..."}</code>.</p>
+<p>Using hyperlinked references, relative references, or references to parts
+of the document other than "definitions" is not supported.</p>
 </div>
 <p>Let's define a schema, and dump it out into a JSON schema document:</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
