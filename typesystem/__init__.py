@@ -1,3 +1,56 @@
+import typing
+import decimal
+
+T = typing.TypeVar("T")
+
+
+@typing.overload
+def Decimal(
+    *, default: typing.Optional[decimal.Decimal] = ..., allow_null: bool = ...
+) -> typing.Optional[decimal.Decimal]:
+    ...
+
+
+@typing.overload
+def Decimal(*, default: decimal.Decimal = ...) -> decimal.Decimal:
+    ...
+
+
+@typing.overload
+def Choice(*, choices: typing.List[T] = ..., default: T = ..., allow_null: bool = ...) -> T:
+    ...
+
+
+@typing.overload
+def String(*, default: str = ...) -> str:
+    ...
+
+
+@typing.overload
+def String(*, default: typing.Optional[str] = ..., allow_null: bool = ...) -> typing.Optional[str]:
+    ...
+
+
+@typing.overload
+def Integer(*, default: int = ...) -> int:
+    ...
+
+
+@typing.overload
+def Integer(*, default: typing.Optional[int] = ..., allow_null: bool = ...) -> typing.Optional[int]:
+    ...
+
+
+@typing.overload
+def Reference(to: typing.Type[T]) -> T:
+    ...
+
+
+@typing.overload
+def Array(items: typing.Any = None) -> typing.Any:
+    ...
+
+
 from typesystem.base import Message, ParseError, Position, ValidationError
 from typesystem.fields import (
     Any,

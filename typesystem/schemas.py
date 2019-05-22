@@ -88,6 +88,7 @@ class SchemaMetaclass(ABCMeta):
             definitions[name] = new_type
         return new_type
 
+_T = typing.TypeVar('_T', bound='Schema')
 
 class Schema(Mapping, metaclass=SchemaMetaclass):
     fields: typing.Dict[str, Field] = {}
@@ -141,8 +142,8 @@ class Schema(Mapping, metaclass=SchemaMetaclass):
 
     @classmethod
     def validate(
-        cls: typing.Type["Schema"], value: typing.Any, *, strict: bool = False
-    ) -> "Schema":
+        cls: typing.Type[_T], value: typing.Any, *, strict: bool = False
+    ) -> _T:
         validator = cls.make_validator(strict=strict)
         value = validator.validate(value, strict=strict)
         return cls(value)
