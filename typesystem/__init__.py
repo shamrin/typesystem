@@ -24,13 +24,17 @@ def Choice(
 
 
 @typing.overload
-def String(*, default: str = ...) -> str:
+def String(*, default: str = ..., max_length: int = ..., min_length: int = ...) -> str:
     ...
 
 
 @typing.overload
 def String(
-    *, default: typing.Optional[str] = ..., allow_null: bool = ...
+    *,
+    default: typing.Optional[str] = ...,
+    max_length: int = ...,
+    min_length: int = ...,
+    allow_null: bool = ...
 ) -> typing.Optional[str]:
     ...
 
