@@ -31,6 +31,7 @@ def String(
     min_length: typing.Optional[int] = ...,
     pattern: typing.Optional[str] = ...,
     trim_whitespace: bool = ...,
+    allow_blank: bool = ...,
 ) -> str:
     ...
 
@@ -44,6 +45,7 @@ def String(
     min_length: typing.Optional[int] = ...,
     pattern: typing.Optional[str] = ...,
     trim_whitespace: bool = ...,
+    allow_blank: bool = ...,
 ) -> typing.Optional[str]:
     ...
 
