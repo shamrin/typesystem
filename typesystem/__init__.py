@@ -24,17 +24,26 @@ def Choice(
 
 
 @typing.overload
-def String(*, default: str = ..., max_length: int = ..., min_length: int = ...) -> str:
+def String(
+    *,
+    default: str = ...,
+    max_length: typing.Optional[int] = ...,
+    min_length: typing.Optional[int] = ...,
+    pattern: typing.Optional[str] = ...,
+    trim_whitespace: bool = ...,
+) -> str:
     ...
 
 
 @typing.overload
 def String(
     *,
+    allow_null: bool = ...,
     default: typing.Optional[str] = ...,
-    max_length: int = ...,
-    min_length: int = ...,
-    allow_null: bool = ...
+    max_length: typing.Optional[int] = ...,
+    min_length: typing.Optional[int] = ...,
+    pattern: typing.Optional[str] = ...,
+    trim_whitespace: bool = ...,
 ) -> typing.Optional[str]:
     ...
 
@@ -53,6 +62,11 @@ def Integer(
 
 @typing.overload
 def Reference(to: typing.Type[T]) -> T:
+    ...
+
+
+@typing.overload
+def Reference(to: typing.Type[T], allow_null: bool = ...) -> typing.Optional[T]:
     ...
 
 
