@@ -88,7 +88,9 @@ class SchemaMetaclass(ABCMeta):
             definitions[name] = new_type
         return new_type
 
-_T = typing.TypeVar('_T', bound='Schema')
+
+_T = typing.TypeVar("_T", bound="Schema")
+
 
 class Schema(Mapping, metaclass=SchemaMetaclass):
     fields: typing.Dict[str, Field] = {}
@@ -200,6 +202,19 @@ class Schema(Mapping, metaclass=SchemaMetaclass):
         )
         sparse_indicator = " [sparse]" if self.is_sparse else ""
         return f"{class_name}({argument_str}){sparse_indicator}"
+
+
+T = typing.TypeVar("T")
+
+
+@typing.overload
+def Reference(to: typing.Type[T]) -> T:
+    ...
+
+
+@typing.overload
+def Reference(to: typing.Type[T], allow_null: bool = ...) -> typing.Optional[T]:
+    ...
 
 
 class Reference(Field):

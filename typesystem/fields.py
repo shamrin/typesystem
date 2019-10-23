@@ -7,6 +7,9 @@ from typesystem import formats
 from typesystem.base import Message, ValidationError, ValidationResult
 from typesystem.unique import Uniqueness
 
+T = typing.TypeVar("T")
+
+
 NO_DEFAULT = object()
 
 FORMATS = {
@@ -90,6 +93,33 @@ class Field:
             any_of += [other]
 
         return Union(any_of=any_of)
+
+
+@typing.overload
+def String(
+    *,
+    default: str = ...,
+    max_length: typing.Optional[int] = ...,
+    min_length: typing.Optional[int] = ...,
+    pattern: typing.Optional[str] = ...,
+    trim_whitespace: bool = ...,
+    allow_blank: bool = ...,
+) -> str:
+    ...
+
+
+@typing.overload
+def String(
+    *,
+    allow_null: bool = ...,
+    default: typing.Optional[str] = ...,
+    max_length: typing.Optional[int] = ...,
+    min_length: typing.Optional[int] = ...,
+    pattern: typing.Optional[str] = ...,
+    trim_whitespace: bool = ...,
+    allow_blank: bool = ...,
+) -> typing.Optional[str]:
+    ...
 
 
 class String(Field):
@@ -298,6 +328,18 @@ class Number(Field):
         return value
 
 
+@typing.overload
+def Integer(*, default: int = ...) -> int:
+    ...
+
+
+@typing.overload
+def Integer(
+    *, default: typing.Optional[int] = ..., allow_null: bool = ...
+) -> typing.Optional[int]:
+    ...
+
+
 class Integer(Number):
     numeric_type = int
 
@@ -306,11 +348,35 @@ class Float(Number):
     numeric_type = float
 
 
+@typing.overload
+def Decimal(*, default: decimal.Decimal = ...) -> decimal.Decimal:
+    ...
+
+
+@typing.overload
+def Decimal(
+    *, default: typing.Optional[decimal.Decimal] = ..., allow_null: bool = ...
+) -> typing.Optional[decimal.Decimal]:
+    ...
+
+
 class Decimal(Number):
     numeric_type = decimal.Decimal
 
     def serialize(self, obj: typing.Any) -> typing.Any:
         return None if obj is None else float(obj)
+
+
+@typing.overload
+def Boolean(*, default: int = ...) -> bool:
+    ...
+
+
+@typing.overload
+def Boolean(
+    *, default: typing.Optional[bool] = ..., allow_null: bool = ...
+) -> typing.Optional[bool]:
+    ...
 
 
 class Boolean(Field):
@@ -351,6 +417,13 @@ class Boolean(Field):
                 raise self.validation_error("type")
 
         return value
+
+
+@typing.overload
+def Choice(
+    *, choices: typing.List[T] = ..., default: T = ..., allow_null: bool = ...
+) -> T:
+    ...
 
 
 class Choice(Field):
@@ -545,6 +618,11 @@ class Object(Field):
             raise ValidationError(messages=error_messages)
 
         return validated
+
+
+@typing.overload
+def Array(items: typing.Any = None) -> typing.Any:
+    ...
 
 
 class Array(Field):
