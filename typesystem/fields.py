@@ -95,7 +95,7 @@ class Field:
         return Union(any_of=any_of)
 
 
-@typing.overload
+@typing.overload  # type: ignore[misc]
 def String(
     *,
     default: str = ...,
@@ -122,7 +122,7 @@ def String(
     ...
 
 
-class String(Field):
+class String(Field):  # type: ignore[no-redef]
     errors = {
         "type": "Must be a string.",
         "null": "May not be null.",
@@ -328,7 +328,7 @@ class Number(Field):
         return value
 
 
-@typing.overload
+@typing.overload  # type: ignore[misc]
 def Integer(*, default: int = ...) -> int:
     ...
 
@@ -340,7 +340,7 @@ def Integer(
     ...
 
 
-class Integer(Number):
+class Integer(Number):  # type: ignore[no-redef]
     numeric_type = int
 
 
@@ -348,7 +348,7 @@ class Float(Number):
     numeric_type = float
 
 
-@typing.overload
+@typing.overload  # type: ignore[misc]
 def Decimal(*, default: decimal.Decimal = ...) -> decimal.Decimal:
     ...
 
@@ -360,14 +360,14 @@ def Decimal(
     ...
 
 
-class Decimal(Number):
+class Decimal(Number):  # type: ignore[no-redef]
     numeric_type = decimal.Decimal
 
     def serialize(self, obj: typing.Any) -> typing.Any:
         return None if obj is None else float(obj)
 
 
-@typing.overload
+@typing.overload  # type: ignore[misc]
 def Boolean(*, default: int = ...) -> bool:
     ...
 
@@ -379,7 +379,7 @@ def Boolean(
     ...
 
 
-class Boolean(Field):
+class Boolean(Field):  # type: ignore[no-redef]
     errors = {"type": "Must be a boolean.", "null": "May not be null."}
     coerce_values = {
         "true": True,
@@ -419,14 +419,14 @@ class Boolean(Field):
         return value
 
 
-@typing.overload
+@typing.overload  # type: ignore[misc]
 def Choice(
     *, choices: typing.List[T] = ..., default: T = ..., allow_null: bool = ...
 ) -> T:
     ...
 
 
-class Choice(Field):
+class Choice(Field):  # type: ignore[no-redef]
     errors = {
         "null": "May not be null.",
         "required": "This field is required.",
@@ -620,12 +620,12 @@ class Object(Field):
         return validated
 
 
-@typing.overload
+@typing.overload  # type: ignore[misc]
 def Array(items: typing.Any = None) -> typing.Any:
     ...
 
 
-class Array(Field):
+class Array(Field):  # type: ignore[no-redef]
     errors = {
         "type": "Must be an array.",
         "null": "May not be null.",
@@ -752,22 +752,22 @@ class Array(Field):
         return [self.items.serialize(value) for value in obj]
 
 
-class Text(String):
+class Text(String):  # type: ignore[valid-type,misc]
     def __init__(self, **kwargs: typing.Any) -> None:
         super().__init__(format="text", **kwargs)
 
 
-class Date(String):
+class Date(String):  # type: ignore[valid-type,misc]
     def __init__(self, **kwargs: typing.Any) -> None:
         super().__init__(format="date", **kwargs)
 
 
-class Time(String):
+class Time(String):  # type: ignore[valid-type,misc]
     def __init__(self, **kwargs: typing.Any) -> None:
         super().__init__(format="time", **kwargs)
 
 
-class DateTime(String):
+class DateTime(String):  # type: ignore[valid-type,misc]
     def __init__(self, **kwargs: typing.Any) -> None:
         super().__init__(format="datetime", **kwargs)
 
