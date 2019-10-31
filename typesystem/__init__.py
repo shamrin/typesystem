@@ -73,13 +73,13 @@ def Reference(to: typing.Type[T], allow_null: bool = ...) -> typing.Optional[T]:
 
 
 @typing.overload
-def Array(items: typing.Type[T]) -> typing.List[T]:
+def Array(items: Reference) -> typing.List[T]:
     ...
 
 
 @typing.overload
 def Array(
-    items: typing.Type[T], allow_null: bool = ...
+    items: Reference, allow_null: bool = ...
 ) -> typing.Optional[typing.List[T]]:
     ...
 
