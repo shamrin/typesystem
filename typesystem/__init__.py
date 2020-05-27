@@ -5,13 +5,20 @@ T = typing.TypeVar("T")
 
 
 @typing.overload
-def Decimal(*, default: decimal.Decimal = ...) -> decimal.Decimal:
+def Decimal(
+    *, 
+    default: decimal.Decimal = ..., 
+    minimum: decimal.Decimal = ...
+    ) -> decimal.Decimal:
     ...
 
 
 @typing.overload
 def Decimal(
-    *, default: typing.Optional[decimal.Decimal] = ..., allow_null: bool = ...
+    *, 
+    default: typing.Optional[decimal.Decimal] = ..., 
+    allow_null: bool = ..., 
+    minimum: decimal.Decimal = ...
 ) -> typing.Optional[decimal.Decimal]:
     ...
 
